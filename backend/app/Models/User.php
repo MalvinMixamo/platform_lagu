@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * @property int $id
@@ -26,8 +27,9 @@ use Illuminate\Support\Carbon;
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
+    protected $table = 'user';
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * Get the attributes that should be cast.
@@ -36,14 +38,18 @@ class User extends Authenticatable
      */
 
     protected $fillable = [
+        'nik',
         'nama',
-        'alamat',
-        'umur',
+        'email',
+        'password',
         'tanggal_lahir',
+        'alamat',
         'rt_rw',
-        'kewarganegaraan',
-        'kelamin',
+        'kel_desa',
+        'kecamatan',
+        'jenis_kelamin',
         'perkawinan',
+        'kewarganegaraan',
         'role'
     ];
 

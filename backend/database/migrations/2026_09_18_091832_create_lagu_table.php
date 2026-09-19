@@ -24,23 +24,23 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
         });
-
-        Schema::create('lagu_album', function (Blueprint $table) {
-            $table->foreignId('lagu_id')->constrained()->onDelete('cascade');
-            $table->foreignId('album_id')->constrained()->onDelete('cascade');
-            $table->primary(['lagu_id', 'album_id']);
-        });
-
-        Schema::create('lagu_genre', function (Blueprint $table) {
-            $table->foreignId('lagu_id')->constrained()->onDelete('cascade');
-            $table->foreignId('gendre_id')->constrained()->onDelete('cascade');
-            $table->primary(['lagu_id', 'genre_id']);
-        });
-
         Schema::create('genre', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
         });
+
+        Schema::create('lagu_album', function (Blueprint $table) {
+            $table->foreignId('lagu_id')->constrained('lagu')->onDelete('cascade');
+            $table->foreignId('album_id')->constrained('album')->onDelete('cascade');
+            $table->primary(['lagu_id', 'album_id']);
+        });
+
+        Schema::create('lagu_genre', function (Blueprint $table) {
+            $table->foreignId('lagu_id')->constrained('lagu')->onDelete('cascade');
+            $table->foreignId('genre_id')->constrained('genre')->onDelete('cascade');
+            $table->primary(['lagu_id', 'genre_id']);
+        });
+
     }
 
     /**
