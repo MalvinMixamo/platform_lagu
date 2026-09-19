@@ -13,10 +13,21 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->integer('nik')->unique();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->date('tanggal_lahir');
+            $table->string('alamat');
+            $table->string('rt_rw');
+            $table->string('kel_desa');
+            $table->string('kecamatan');
+            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
+            $table->enum('Perkawinan', ['Belum Kawin', 'Kawin', 'Cerai Hidup', 'Cerai Mati']);
+            $table->enum('kewarganegaraan', ['WNI', 'WNA']);
+            $table->enum('role', ['guest', 'user', 'artis'])->default('guest');
+            $table->foreignId('lagu_id')->constrained()->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });

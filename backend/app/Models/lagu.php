@@ -14,6 +14,12 @@ class lagu extends Model
     ];
 
     public function lagu_album(){
-        return $this->belongsToMany(lagu_album::class);
+        return $this->belongsToMany(lagu_album::class, 'lagu_id');
+    }
+    public function user_lagu(){
+        return $this->belongsToMany(User::class, 'lagu_id');
+    }
+    public function lagu_genre(){
+        return $this->belongsToMany(lagu_genre::class, 'lagu_id');
     }
 }
