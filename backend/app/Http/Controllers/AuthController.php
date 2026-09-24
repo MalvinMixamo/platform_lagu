@@ -51,6 +51,7 @@ class AuthController extends Controller
         return response()->json([
             'message'=> 'Data berhasil dibuat',
             'User' => $user,
+            'token' => $token
         ]);
     }
     public function Login(Request $request){

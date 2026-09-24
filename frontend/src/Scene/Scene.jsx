@@ -5,9 +5,9 @@ import * as THREE from 'three';
 
 function Model() {
   // Langsung panggil string path dari folder public
-  const { scene } = useGLTF('/car.glb'); 
+  const { scene } = useGLTF('/headset.glb'); 
   
-  return <primitive object={scene} scale={0.1} position={[-0, -0.5, -15]} />;
+  return <primitive object={scene} scale={1} position={[-0, -0.1, -0]} />;
 }
 
 function Lights() {
@@ -31,16 +31,24 @@ function Lights() {
       {/* 2. Point Light Helper */}
       <pointLight 
         ref={pointLightRef} 
-        position={[-3, 3, -3]} 
-        intensity={5.0} 
-        color={'#FFFF00'}
+        position={[-0.3, -0.1, -0.5]} 
+        intensity={1.0}
+        decay={3} 
+        color={'#00454F'}
+      />
+      <pointLight 
+        ref={pointLightRef} 
+        position={[0.3, -0.1, 0.5]} 
+        intensity={1.0}
+        decay={3} 
+        color={'#5F2F00'}
       />
       {pointLightRef.current && <Helper ref={pointLightRef} type={THREE.PointLightHelper} args={[0.5, 'cyan']} />}
 
       {/* 3. Spot Light Helper */}
       <spotLight 
         ref={spotLightRef} 
-        position={[0, 20, 0]} 
+        position={[0, 0, 0]} 
         angle={5.3} 
         intensity={2.0} 
         color={'#FFFFFF'}
@@ -52,8 +60,7 @@ function Lights() {
 export default function Scene({className}) {
   return (
     <div className={className}>
-      {/* Perbaikan pada posisi kamera (menggunakan format array [x, y, z]) */}
-      <Canvas camera={{ position: [60, 0, 5], fov: 10 }}>
+      <Canvas camera={{ position: [0.1, 0, 2], fov: 10 }}>
         <ambientLight intensity={0.7} />
         <Lights />
 

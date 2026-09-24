@@ -12,10 +12,10 @@ function App() {
   return (
     <>
       <div className='bg-slate-950 w-full h-screen relative'>
-        {/* <video className='h-screen ' autoPlay muted loop>
+        <video className='h-screen ' autoPlay muted loop>
           <source src={video}/>
-        </video> */}
-        <Scene className={' w-full h-screen flex items-center'}/>
+        </video>
+        <Scene className={' delay-10000 from-0% to-100% absolute -top-11 w-full h-full flex items-center'}/>
       </div>
     </>
   )
